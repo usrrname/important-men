@@ -1,0 +1,24 @@
+{
+  "name": "im",
+  "version": "1.0.0",
+  "description": "",
+  "main": "server.js",
+  "dependencies": {
+    "express": "^4.16.2",
+    "mongodb": "^2.2.31"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "node api/server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/usrrname/important-men.git"
+  },
+  "author": "jen chan",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/usrrname/important-men/issues"
+  },
+  "homepage": "https://github.com/usrrname/important-men#readme"
+}
