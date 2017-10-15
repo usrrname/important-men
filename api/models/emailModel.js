@@ -1,7 +1,7 @@
 var mongoose = require('mongoose');
 var Schema = mongoose.Schema;
 
-mongoose.connect('mongodb://localhost/test', { config: { autoIndex: false } });
+// mongoose.connect('', { config: { autoIndex: false } });
 
 var db = mongoose.connection;
 db.on('error', console.error.bind(console, 'connection error:'));

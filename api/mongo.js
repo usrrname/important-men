@@ -1,6 +1,6 @@
-var config = require('../config');
+var config = require('./config');
 var MongoClient = require('mongodb').MongoClient
-  , assert = require('assert');
+, assert = require('assert');
 
 // Connection URL
 var url = config.mongoUrl;
@@ -12,7 +12,7 @@ module.exports = {
   start: () => {
     MongoClient.connect(url, (err, database) => {
       if (err) {
-        console.log(`err: ${err}`)
+        console.log(`err: ${err}`);
       } else {
         console.log("Connected correctly to server");
         db = database;

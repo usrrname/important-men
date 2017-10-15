@@ -2,7 +2,7 @@
   "name": "im",
   "version": "1.0.0",
   "description": "",
-  "main": "server.js",
+  "main": "express.js",
   "dependencies": {
     "body-parser": "^1.18.2",
     "express": "^4.16.2",
