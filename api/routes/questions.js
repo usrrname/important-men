@@ -7,12 +7,21 @@ var bodyParser = require('body-parser');
 
 //'questions/' endpoint hit when user selects to see all q+a
 questionsRouter.get('/', (req, res) => {
-  //res.send('send all the questions with responses here');
-  res.json([{ "name": "john", "email":"john@jones.com", "comments": "Hey Girl?"},
-  { "name": "alex", "email":"help@alex.com", "comments": "What is going on?"},
-  { "name": "kate", "email":"k@lost.com", "comments": "Where is my hairbrush?"}
-  ]);
+  const db = dB.get();
+  const collection = db.collection('questions');
+  collection.find({}).toArray((err, resp) => {
+    if (err) { throw err; 
+}
+    res.json(resp);
+  });
 });
+  //res.send('send all the questions with responses here');
+  //mock data
+  // res.json([{ "name": "john", "email":"john@jones.com", "comments": "Hey Girl?"},
+  // { "name": "alex", "email":"help@alex.com", "comments": "What is going on?"},
+  // { "name": "kate", "email":"k@lost.com", "comments": "Where is my hairbrush?"}
+  // ]);
+
 
 questionsRouter.post('/ask', (req, res) => {
   console.log('question received');
@@ -27,7 +36,8 @@ questionsRouter.post('/ask', (req, res) => {
       console.log(result);
     }
   });
-  res.send('you sent a question');
+  // res.send('you sent a question');
+  return res.status;
 });
 
 module.exports = questionsRouter;

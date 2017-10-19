@@ -1,12 +1,33 @@
+<!DOCTYPE html>
 <html>
     <head>
     <script src="index.js"></script>
     </head>
     <body>
     <div>
-    <ul id="root">
-    </ul>
-    </div>
+    <div id="root">
 
+    </ul>
+
+    <form id="ask-form"  action="http://localhost:3000/questions/ask/" method="post">
+        <label>Name:</label><br>
+        <input id="name" type="text" name="firstname" placeholder="Name">
+        <br>
+        <label>Email:</label><br>
+        <input id="email" type="email" name="email" placeholder="contact"><br>
+        <label>Question:</label><br>
+        <textarea id="comment" type="text" name="comment" placeholder="Enter Your Question"></textarea>
+        <br>
+        <input type="submit" value="Submit">
+      </form> 
+    </div>
+    <div id="get-questions" action="http://localhost:3000/questions/" method="get">
+    <button type="submit" value="All Questions">All Questions</button>
+    </div>
     </body>
+</html>
+
+<html>
+
+</body>
 </html>

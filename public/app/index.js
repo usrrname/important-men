@@ -8,15 +8,33 @@ function createNode(element) {
 function append(parent, el) {
   return parent.appendChild(el); // Append the second parameter(element) to the first one
 }
-const url = 'http://localhost:3000/questions/';
+const askUrl = 'http://localhost:3000/questions/ask/';
+const qUrl = 'http://localhost:3000/questions/';
+const askForm = document.getElementById('ask-form');
 
-fetch(url).then((response) => {
+fetch(askUrl, {
+	method: 'post',
+	body: JSON.stringify({
+    email: document.getElementById('name').value,
+		email: document.getElementById('email').value,
+		answer: document.getElementById('comment').value
+}).then( (err, res)=>{
+  if (err){
+    throw err;
+  }
+  if (res.status(200)){
+  let div = createNode('div');
+  div.innerHTML = "Thanks for submitting your question."
+  append(askForm, div);
+  }
+})
+
+fetch(qUrl).then((response) => {
   return response.json();
 })
   .then( (data) => { 
     const ul = document.getElementById('root');
     let div = createNode('div');
-
    for (var index = 0; index < data.length; index++) {
      let name = data[index].name,
         email = data[index].email,
