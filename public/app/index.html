@@ -4,30 +4,24 @@
     <script src="index.js"></script>
     </head>
     <body>
-    <div>
-    <div id="root">
-
-    </ul>
 
     <form id="ask-form"  action="http://localhost:3000/questions/ask/" method="post">
         <label>Name:</label><br>
-        <input id="name" type="text" name="firstname" placeholder="Name">
-        <br>
+        <input id="firstname" type="text" name="name" placeholder="Name"><br>
         <label>Email:</label><br>
         <input id="email" type="email" name="email" placeholder="contact"><br>
         <label>Question:</label><br>
-        <textarea id="comment" type="text" name="comment" placeholder="Enter Your Question"></textarea>
+        <textarea id="comment" type="text" name="comment" placeholder="Enter Your Question(s)" cols="40" rows="5"></textarea>
         <br>
-        <input type="submit" value="Submit">
+        <input type="submit" value="Submit" onclick='postQ()'>
       </form> 
     </div>
     <div id="get-questions" action="http://localhost:3000/questions/" method="get">
-    <button type="submit" value="All Questions">All Questions</button>
+    <button type="submit" value="All Questions" onclick='getAll()'>All Questions</button>
     </div>
-    </body>
-</html>
 
-<html>
+    <div id="root">
 
+    </div>
 </body>
 </html>

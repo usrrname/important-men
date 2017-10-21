@@ -2,6 +2,7 @@ var express = require('express');
 var bodyParser = require('body-parser');
 var dB = require('./mongo');
 var app = express();
+const path = require('path');
 var questionsRouter = require('./routes/questions');
 
 app.use((req, res, next) => {
@@ -14,9 +15,16 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 
 // respond with "hello world" when a GET request is made to the homepage
+// app.get('/', (req, res) => {
+//   // res.send('hello world');
+// });
+
+app.use(express.static(path.join(__dirname, '../public/app')));
+
+// respond with index -email form atm
 app.get('/', (req, res) => {
-  res.send('hello world');
-});
+  res.sendFile(__dirname + '/index.html');
+  });
 
 // hook router into express route
 app.use('/questions', questionsRouter);
