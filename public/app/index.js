@@ -12,13 +12,14 @@ const askUrl = 'http://localhost:3000/questions/ask/';
 const qUrl = 'http://localhost:3000/questions/';
 const askForm = document.getElementById('ask-form');
 
-postQ() = 
+const postQ = () => {
 fetch(askUrl, {
 	method: 'post',
 	body: JSON.stringify({
     name: document.getElementById('firstname').value,
 		email: document.getElementById('email').value,
 		answer: document.getElementById('comment').value
+})
 }).then((err, res) => {
   if (err){
     throw err;
@@ -28,11 +29,10 @@ fetch(askUrl, {
   div.innerHTML = "Thanks for submitting your question."
   append(askForm, div);
   }
-})
 });
+}
 
-
-getAll() =
+const getAll = () => {
 fetch(qUrl).then((response) => {
   return response.json();
 })
@@ -52,4 +52,5 @@ fetch(qUrl).then((response) => {
   })
 .catch((error) => {
   console.log(error);
-});
+})
+}

@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
     <head>
-    <script src="index.js"></script>
+            <script type="text/javascript" src="index.js"></script>
     </head>
     <body>
 
@@ -13,15 +13,16 @@
         <label>Question:</label><br>
         <textarea id="comment" type="text" name="comment" placeholder="Enter Your Question(s)" cols="40" rows="5"></textarea>
         <br>
-        <input type="submit" value="Submit" onclick='postQ()'>
+        <input id="send" type="submit" value="Submit" onclick="postQ()">
       </form> 
     </div>
     <div id="get-questions" action="http://localhost:3000/questions/" method="get">
-    <button type="submit" value="All Questions" onclick='getAll()'>All Questions</button>
+    <button id="retrieve" type="submit" value="All Questions" onclick="getAll()">All Questions</button>
     </div>
 
     <div id="root">
 
     </div>
+    <script src="http://ajax.cdnjs.com/ajax/libs/json2/20110223/json2.js"></script>
 </body>
 </html>
