@@ -34,28 +34,27 @@ questionsRouter.post('/ask', (req, res) => {
     } else {
       console.log('inserted');
       console.log(result);
+      sgMail.setApiKey(process.env.SENDGRID_API_KEY);
+      const msg = {
+        to: email,
+        from: 'questions@importantmen.com',
+        subject: 'Hello Matthew!',
+        text: 'This is an email handled through SendGrid',
+        html: `<p>You have a new question.</p>
+      <h3>Contact Details<h/3>
+      <ul>
+      <li>Name: ${req.body.name}</li>
+      <li>Email: ${req.body.email}</li>
+      </ul>
+      <h3>Message</h3>
+      <p>${req.body.comment}</p>
+      `,
+      };
+      sgMail.send(msg);
+      return res.send('you sent a question + question handled by sendgrid');
     }
-  });
-  sgMail.setApiKey(process.env.SENDGRID_API_KEY);
-  const msg = {
-    to: email,
-    from: 'questions@importantmen.com',
-    subject: 'Hello World!',
-    text: 'My first email through SendGrid',
-    html: `<p>You have a new question.</p>
-    <h3>Contact Details<h/3>
-    <ul>
-    <li>Name: ${req.body.name}</li>
-    <li>Email: ${req.body.email}</li>
-    </ul>
-    <h3>Message</h3>
-    <p>${req.body.comment}</p>
-    `,
-  };
-  sgMail.send(msg);
-  console.log('question handled by sendgrid');
-  // res.send('you sent a question');
   return res.status;
+  });
 });
 
 module.exports = questionsRouter;
