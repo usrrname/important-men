@@ -42,18 +42,21 @@ questionsRouter.post('/ask', (req, res) => {
         subject: 'Hello Matthew!',
         text: hex, //not hex string, actual type string
         html: `<p>You have a new question!</p>
-              <h3>Contact Details<h/3>
+        <form id="res-form"  action="http://localhost:3000/questions/response/" method="post">  
+            <h3>Contact Details<h/3>
               <ul>
                 <li>Name: ${req.body.name}</li>
+                <input type='hidden' name='name' value='${req.body.name}'>
                 <li>Email: ${req.body.email}</li>
-                <li>Mongo ID: ${hex} </li>
+                <input type='hidden' name='email' value='${req.body.email}'>
+                <li id='mongoString' name='mongoString'>Mongo ID: ${hex} </li>
               </ul>
               <h3>Message</h3>
                 <p>${req.body.comment}</p>
+                <input type='hidden'name='comment' value='${req.body.comment}'>
               <br><hr><br>
               <h3>Respond in this form below</h3>
-              <form id="res-form"  action="http://localhost:3000/questions/response/" method="post">
-                  <input id='fromAsk' type='hidden' value="${id}">
+              <input id='fromAsk' name='fromAsk' type='hidden' value="${hex}"><br>
                 <label>Subject Line</label><br>
                   <input id='title' name='title' placeholder='subject line' type='text'><br>
                 <label>Your Answer</label><br>
@@ -64,7 +67,6 @@ questionsRouter.post('/ask', (req, res) => {
               </form>`,
       };
       sgMail.send(msg);
-      console.log(msg);
       return res.send('you sent a question + question handled by sendgrid');
     }
     return res.status;
@@ -73,24 +75,32 @@ questionsRouter.post('/ask', (req, res) => {
 
 //'questions/response' endpoint hit when user selects to see all q+a
 questionsRouter.post('/response', (req, res, err) => {
+  if (err) {
+    console.log(err);
+  }
+  
   const db = dB.get();
   const collection = db.collection('questions');
-  const _id = req.body.fromAsk;
-  console.log(_id);
-  const selectParas = { "_id": _id}; 
-  const updateValues = { answerTitle: `${req.body.title}`, advice: `${req.body.advice}` };
+  const selectParas = { _id: ObjectID(req.body.fromAsk) };
+  const updateValues = {
+    name: `${req.body.name}`,
+    email: `${req.body.email}`,
+    message: `${req.body.comment}`,
+    answerTitle: `${req.body.title}`,
+    advice: `${req.body.advice}`,
+  };
 
   collection.findOneAndUpdate(
-    selectParas,
+    selectParas, req.body,
     { $addToSet: updateValues },
     { upsert: true, returnNewDocument: true },
   )
     .then((result, error) => {
       if (error) {
-        console.log(error);
+        console.log('error:', error);
       }
-      console.log(result);
-      res.send('Your response was submitted to the Matthieu database')
+      console.log('result:', result);
+      res.send('Your response was submitted to the Matthieu database');
     });
 });
 module.exports = questionsRouter;
