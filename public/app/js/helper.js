@@ -1,5 +1,5 @@
 $(document).ready(function() {
-    $('a[href*=\\#]:not([href=\\#])').bind('click', function(e) {
+    $('#menu a[href*=\\#]:not([href=\\#])').bind('click', function(e) {
             e.preventDefault(); // prevent hard jump, the default behavior
 
             var target = $(this).attr("href"); // Set the target as variable
@@ -7,7 +7,7 @@ $(document).ready(function() {
             // perform animated scrolling by getting top-position of target-element and set it as scroll target
             $('html, body').stop().animate({
                     scrollTop: $(target).offset().top
-            }, 600, function() {
+            }, 770, function() {
                     location.hash = target; //attach the hash (#jumptarget) to the pageurl
             });
 
@@ -17,19 +17,11 @@ $(document).ready(function() {
 
 $(window).scroll(function() {
     var scrollDistance = $(window).scrollTop();
-
-    // Show/hide menu on scroll
-    if (scrollDistance >= 850) {
-    		$('nav').fadeIn("fast");
-    } else {
-    		$('nav').fadeOut("fast");
-    }
-
     // Assign active class to nav links while scolling
     $('img').each(function(i) {
             if ($(this).position().top <= scrollDistance) {
-                    $('nav a.active').removeClass('active');
-                    $('nav a').eq(i).addClass('active');
+                    $('#menu a.active').removeClass('active');
+                    $('#menu a').eq(i).addClass('active');
             }
     });
 }).scroll();
