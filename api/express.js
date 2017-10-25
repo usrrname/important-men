@@ -23,7 +23,6 @@ app.get('/', (req, res) => {
 
 // hook router into express route
 app.use('/questions', questionsRouter);
-
 dB.start();
 
 app.listen('3000');

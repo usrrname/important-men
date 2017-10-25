@@ -1,28 +1,85 @@
 <!DOCTYPE html>
 <html>
-    <head>
-            <script type="text/javascript" src="index.js"></script>
-    </head>
-    <body>
-
-    <form id="ask-form"  action="http://localhost:3000/questions/ask/" method="post">
-        <label>Name:</label><br>
-        <input id="firstname" type="text" name="name" placeholder="Name"><br>
-        <label>Email:</label><br>
-        <input id="email" type="email" name="email" placeholder="contact"><br>
-        <label>Question:</label><br>
-        <textarea id="comment" type="text" name="comment" placeholder="Enter Your Question(s)" cols="40" rows="5"></textarea>
-        <br>
-        <input id="send" type="submit" value="Submit" onclick="postQ">
-      </form> 
-    </div>
-    <div id="get-questions" action="http://localhost:3000/questions/" method="get">
-    <button id="retrieve" type="submit" value="All Questions" onclick="getAll()">All Questions</button>
-    </div>
-
-    <div id="root">
-
-    </div>
-    <script src="http://ajax.cdnjs.com/ajax/libs/json2/20110223/json2.js"></script>
+<!--[if IE 7]>    <html class="no-js ie7 oldie" lang="en-US"> <![endif]-->
+<!--[if IE 8]>    <html class="no-js ie8 oldie" lang="en-US"> <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en-US">  <!--<![endif]-->
+<head>
+<!-- META DATA -->
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta http-equiv="content-type" content="text/html;charset=UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta property="og:image" content="http://importantmen.com/images/importantmen.jpg"/>
+<meta property="og:title" content="Important Men"/>
+<link rel="canonical" property="og:url" content="http://www.importantmen.com"/>
+<meta property="og:url" content="http://www.importantmen.com"/>
+<meta property="og:site_name" content="Important Men Lifestyle Website"/>
+<meta property="og:description" content="What makes a man? What is Important? What do they want? What do men do in their free time?">
+<meta property="og:type" content="product"/>
+<!-- Title -->
+<title>Important Men | Lifestyle Attributes </title>
+<!-- CSS -->
+<link rel="stylesheet" href="css/tachyons.min.css" > 
+<link rel="stylesheet" href="css/custom.css" > 
+<!-- Favicon -->	
+<link rel="apple-touch-icon" sizes="57x57" href="images/apple-icon-57x57.png">
+<link rel="apple-touch-icon" sizes="60x60" href="images/apple-icon-60x60.png">
+<link rel="apple-touch-icon" sizes="72x72" href="images/apple-icon-72x72.png">
+<link rel="apple-touch-icon" sizes="76x76" href="images/apple-icon-76x76.png">
+<link rel="apple-touch-icon" sizes="114x114" href="images/apple-icon-114x114.png">
+<link rel="apple-touch-icon" sizes="120x120" href="images/apple-icon-120x120.png">
+<link rel="apple-touch-icon" sizes="144x144" href="images/apple-icon-144x144.png">
+<link rel="apple-touch-icon" sizes="152x152" href="images/apple-icon-152x152.png">
+<link rel="apple-touch-icon" sizes="180x180" href="images/apple-icon-180x180.png">
+<link rel="icon" type="image/png" sizes="192x192"  href="images/android-icon-192x192.png">
+<link rel="icon" type="image/png" sizes="32x32" href="images/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="96x96" href="images/favicon-96x96.png">
+<link rel="icon" type="image/png" sizes="16x16" href="images/favicon-16x16.png">
+<link rel="manifest" href="images/manifest.json">
+<meta name="msapplication-TileColor" content="#ffffff">
+<meta name="msapplication-TileImage" content="images/ms-icon-144x144.png">
+<meta name="theme-color" content="#ffffff">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+</head>
+<body>
+<nav class="dt w-100 border-box pa3 ph5-ns bb b--black-10">
+        <h4 class="athelas dtc v-mid mid-gray link dim w-25" href="#" title="Home">
+           IMPORTANT MEN
+        </h4>
+        <div class="dtc v-mid w-75 tr">
+            <a class="link dim dark-gray f6 f5-ns dib mr3 mr4-ns" href="#" title="About">About</a>
+            <a class="link dim dark-gray f6 f5-ns dib mr3 mr4-ns" href="#" title="Ask A White Man">Ask A White Man</a>
+        </div>
+</nav>
+        <div class="dib fixed fl w-90 ph3 pv3 pv4-ns ph4-m ph5-l cf tl">
+                <ul class="f6 fw6 ttu tracked">
+                  <a class="link dim dib mr3" href="#albert" title="albert">Albert</a><br>
+                  <a class="link dim dib mr3" href="#bill" title="bill">Bill</a><br>
+                  <a class="link dim dib mr3" href="#brad" title="brad">Brad</a><br>
+                  <a class="link dim dib mr3" href="#jj" title="jj">JJ</a><br>
+                  <a class="link dim dib mr3" href="#matt" title="matt">Matt</a><br>
+                  <a class="link dim dib mr3" href="#paul" title="Paul">Paul</a><br>
+                </ul>
+            </div>
+        <div class="fl w-100 db">
+            <article class="pa2">
+                <div class="flex flex-column flex-column-ns flex-nowrap flex-nowrap-ns justify-around">
+                    <img id="albert" src="./img/albert1.jpg" class="db w-100 measure ph1 pv4 pa5-ns self-end" alt="Chinese man with back turned, holding succulent in a peanut butter jar">
+                    <img id="bill" src="./img/bill1.jpg" class="w-100 measure ph3 pv6 pa5-ns self-center" alt="Old Chinese man holding McDonald's paper cup with carnation sticking out">
+                    <img id="brad" src="./img/brad1.jpg" class="w-100 measure  ph1 pv6 pa5-ns self-end" alt="White man on pink background in sprint position holding protein jar with sunflower in it">
+                    <img id="devin" src="./img/devin1.jpg" class="w-100 measure ph0 pv5 pa6-ns self-end" alt="Young black man looking to the side, holding rose with green background">
+                    <img id="jj" src="./img/jj1.jpg" class="w-100 measure ph4 pv5 pa5-ns self-center" alt="Young Asian man lying on purple background">
+                    <img id="matt" src="./img/matt1.jpg" class="w-100 measure ph1 pv6 pa6-ns self-center" alt="White man sitting with teacup containing carnivorous plant">
+                    <img id="paul" src="./img/paul1.jpg" class="w-100 measure ph2 pv6 pa4-ns self-start" alt="Young white man with elbow over head, holding vitamin jar with eucalyptus in it">
+                </div>
+            </article>
+        </div>
+<div class="fl w-100">
+<footer class="pv4 ph3 ph5-m ph6-l mid-gray">
+<small class="f6 db tc"> 2017 <b class="ttu">Important Men</b>., IOTA Institute, Canada Council For The Arts</small>
+</div>
+</footer>
+<script src='js/helper.js'></script>
+    
 </body>
 </html>

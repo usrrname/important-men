@@ -35,7 +35,6 @@ questionsRouter.post('/ask', (req, res) => {
       console.log('inserted');
       const hex = req.body['_id'] + ''; 
       sgMail.setApiKey(process.env.SENDGRID_API_KEY);
-      const id = req.params['_id'];
       const msg = {
         to: email,
         from: 'questions@importantmen.com',
