@@ -5,3 +5,10 @@
     text-decoration: none;
     line-height: 1em;
 }
+
+.results {
+    font-family:'Athelas', serif;
+    padding-left:1em;
+    padding-bottom:2em;
+    font-size: 1em;
+}

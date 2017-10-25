@@ -40,6 +40,7 @@ fetch(qUrl).then((response) => {
     console.log(data);
     const root = document.getElementById('root');
     let div = createNode('div');
+    div.className = 'results';
     let label1 = createNode('label');
     let label2 = createNode('label');
     let from = createNode('label');

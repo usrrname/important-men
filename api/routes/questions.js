@@ -52,7 +52,7 @@ questionsRouter.post('/ask', (req, res) => {
               </ul>
               <h3>Message</h3>
                 <p>${req.body.comment}</p>
-                <input type='hidden'name='comment' value='${req.body.comment}'>
+                <input type='hidden' name='comment' value='${req.body.comment}'>
               <br><hr><br>
               <h3>Respond in this form below</h3>
               <input id='fromAsk' name='fromAsk' type='hidden' value="${hex}"><br>
