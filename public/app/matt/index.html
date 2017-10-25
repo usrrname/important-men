@@ -1,5 +1,8 @@
 <!DOCTYPE html>
 <html>
+        <!--[if IE 7]>    <html class="no-js ie7 oldie" lang="en-US"> <![endif]-->
+        <!--[if IE 8]>    <html class="no-js ie8 oldie" lang="en-US"> <![endif]-->
+        <!--[if gt IE 8]><!--> <html class="no-js" lang="en-US">  <!--<![endif]-->
     <head>
 <!-- META DATA -->
     <meta charset="utf-8">
@@ -23,10 +26,10 @@
 <body>
 <!-- header -->
 <nav class="dt w-100 border-box pa3 ph5-ns bb b--black-10">
-                <h4 class="athelas dtc v-mid mid-gray link dim w-25" href="/" title="Home">
+                <h4 class="bodoni dtc v-mid mid-gray link dim w-25" href="../index" title="Home">
                    IMPORTANT MEN
                 </h4>
-                <div class="dtc v-mid w-75 tr">
+                <div class="avenir dtc v-mid w-75 tr">
                     <a class="link dim dark-gray f6 f5-ns dib mr3 mr4-ns" href="../about/" title="About">About</a>
                     <a class="link dim dark-gray f6 f5-ns dib mr3 mr4-ns" href="/matt/" title="Ask A White Man">Ask A White Man</a>
                 </div>
@@ -47,15 +50,17 @@
                 <img src="../img/matt2.jpg" class=" w-100 measure-wide center tc db" alt="Matthew holding teacup, giving side eye.">
             </div>
             <div class="center tc ph3 w-75">
-                    <h1 class="athelas f4 f2-m f1-l fw2 black-90 mv3">
+                    <h1 class="bodoni f4 f2-m f1-l fw2 black-90 mv3">
                      Ask A White Man
                     </h1>
-                    <h3 class="avenir tl f5 f4-m f3-l fw2 black-50 mt0 lh-copy">
+                    <h3 class="avenir tl f5 f4-m f3-l fw3 black-50 mt0 lh-copy">
                             Straight, direct, bespoke insights from a well-adjusted, fashionable man living in a gentrified American city. Midwestern with no&nbsp;beard.
                           </h3>
                         </div>
             <div class="center mw-9 mw-90-ns mv4 pa2">
-                    <h1 class="athelas f4 pv1 ph3 tc link grow mv0 red" id="imgMatt">Why Matthew?</h1>
+                <article class="center tc">
+                    <h1 class="bodoni f4 pv1 ph3 link dim mv0 red di" id="imgMatt">Why Matthew?</h1><sub class="di tc f9 chevron bottom black"></sub>
+                </article>
                     <p id="desc" class="center f6 f5-ns lh-copy measure tl ph3 dn">
                         Matthew may look like he's scowling but he's really feeling alright. He has thirty-two years of experience living as a cis male. Matthew had an immaculate collection of vintage boutique clothing that he narrowed down into a set of durable expensive outfits he could wear routinely. 
                         He once impulse bought an $800 leather jacket and recently tried wearing dresses. On Saturday afternoon you may find Matthew bursting into laughter while reading bodybuilder forums or driving around Los Angeles listening to Bobbi Brown.
@@ -67,8 +72,10 @@
         </article>
  </div>
  <section class="fl w-100 flex flex-column flex-nowrap flex-nowrap-ns db ph3 center">
-        <h1 class="athelas f4 pv1 ph3 tc mt0 link grow tracked purple" id="learn">Ask A Question</a></h1>
-        <small class="tc">Learn From Matthew</small>
+        <article class="center tc">
+            <h1 class="bodoni di f4 pv1 ph3 tc mt0 link dim tracked purple" id="learn">Ask A Question</h1><sub class="di tc f9 chevron bottom black"></sub>
+        </article><small class="tc mt1">Learn From Matthew</small>
+        
     <form id="ask-form" class="center pa2 black-80 dn" action="http://localhost:3000/questions/ask/" method="post">
     <div class="measure">
         <label for="name" class="f6 b db mb2">Name</label><br>
@@ -137,13 +144,16 @@
     </div>
     </form> 
     <div class="fl mw-100 db center pv3 ph3 mt3">
-        <div id="get-questions" class="black-80 dim" action="http://localhost:3000/questions/" method="get">
-        <button id="retrieve" type="submit" value="All Questions" class="athelas tracked link f4 fw6 grow bn ph3 pv2 mb2 db blue bg-white" onclick="getAll()">Read Responses</button>
+       <div id="get-questions" class="black-80 dim" action="http://localhost:3000/questions/" method="get">
+       <article class="center tc di">
+           <button id="retrieve" type="submit" value="All Questions" class="bodoni tracked di link f4 fw6 dim bn ph2 pv2 mb2 blue bg-white" onclick="getAll()">Read Responses</button><sub class="di tc f8 chevron bottom black"></sub>
+       </article>
         </div>
     <div id="root" class="fl w-100 f5 lh-copy measure-wide">
     </div>
     </div>
  </section>
+ <!-- vendor js -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <script src="http://ajax.cdnjs.com/ajax/libs/json2/20110223/json2.js"></script>
     <script>
@@ -157,5 +167,12 @@
         $("#ask-form").slideToggle("slow").show();
     });
     </script>
+<!-- footer -->
+<div class="fl w-100">
+<footer class="times pv4 ph3 ph5-m ph6-l mid-gray">
+<small class="f8 avenir db tc"> 2017 <b class="athelas ttu">Important Men</b>., IOTA Institute &amp; Canada Council For The Arts</small>
+</footer>
+</div>
+<!-- footer end -->
 </body>
 </html>
