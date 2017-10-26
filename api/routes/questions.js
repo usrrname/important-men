@@ -92,13 +92,14 @@ questionsRouter.post('/response', (req, res, err) => {
     selectParas, req.body,
     { $addToSet: updateValues },
     { upsert: true, returnNewDocument: true },
-  ).then((result, error) => {
+  )
+    .then((result, error) => {
       if (error) {
         console.log('error:', error);
       }
       console.log('result:', result);
       result.send('Your response was submitted to the Matthieu database <a href="http://www.importantmen.com/matt/">Return To Site</a>');
     });
-    res.send(req.body);
+  res.send(req.body);
 });
 module.exports = questionsRouter;
