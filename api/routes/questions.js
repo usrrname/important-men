@@ -79,7 +79,7 @@ questionsRouter.post('/response', (req, res, err) => {
   
   const db = dB.get();
   const collection = db.collection('questions');
-  const selectParas = { _id: ObjectID(req.body.fromAsk) };
+  const selectParas = { _id: ObjectID(req.body.fromAsk) }
   const updateValues = {
     name: `${req.body.name}`,
     email: `${req.body.email}`,
@@ -91,7 +91,7 @@ questionsRouter.post('/response', (req, res, err) => {
   collection.findOneAndUpdate(
     selectParas, req.body,
     { $addToSet: updateValues },
-    { upsert: true, returnNewDocument: true },
+    { upsert: true, returnNewDocument: true }
   ).then((result, error) => {
       if (error) {
         console.log('error:', error);
