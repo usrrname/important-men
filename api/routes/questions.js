@@ -8,7 +8,6 @@ const bodyParser = require('body-parser');
 const sgMail = require('@sendgrid/mail');
 const nodemailer = require('nodemailer');
 const SENDGRID_API_KEY = PROD.SENDGRID_API_KEY;
-const config = require('../config');
 const email = process.env.EMAIL || config.email;
 const ObjectID = require('mongodb').ObjectID;//for accessing ObjectID()
 
@@ -93,13 +92,12 @@ questionsRouter.post('/response', (req, res, err) => {
     selectParas, req.body,
     { $addToSet: updateValues },
     { upsert: true, returnNewDocument: true },
-  )
-    .then((result, error) => {
+  ).then((result, error) => {
       if (error) {
         console.log('error:', error);
       }
       console.log('result:', result);
       res.send('Your response was submitted to the Matthieu database <a href="http://www.importantmen.com/matt/">Return To Site</a>');
     });
-});
+
 module.exports = questionsRouter;
