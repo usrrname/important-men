@@ -27,7 +27,7 @@ $(window).scroll(function() {
 }).scroll();
 
 $('#wrapper').fadeIn(1400);
-//accessible button-cliks WIP
+// accessible button
 const handleBtnClick = (event) => {
 	toggleButton(event.target);
   };

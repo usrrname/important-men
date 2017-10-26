@@ -154,21 +154,6 @@
     </div>
  </section>
  </div>
- <!-- vendor js -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-    <script src="../js/helper.js"></script>
-    <script src="http://ajax.cdnjs.com/ajax/libs/json2/20110223/json2.js"></script>
-    <script>
-    $('#tos').click(() => {
-        $("#terms").slideToggle("slow");
-    });
-    $('#imgMatt').click(() => {
-        $("#desc").slideToggle("slow").show();
-    });
-    $('#learn').click(() => {
-        $("#ask-form").slideToggle("slow").show();
-    });
-    </script>
 <!-- footer -->
 <div class="fl w-100">
 <footer class="times pv4 ph3 ph5-m ph6-l mid-gray">
@@ -176,5 +161,20 @@
 </footer>
 </div>
 <!-- footer end -->
+ <!-- vendor js -->
+ <script src="../js/jquery.min.js"></script>
+ <script src="../js/helper.js"></script>
+ <script src="http://ajax.cdnjs.com/ajax/libs/json2/20110223/json2.js"></script>
+ <script>
+ $('#tos').click(() => {
+     $("#terms").slideToggle("slow");
+ });
+ $('#imgMatt').click(() => {
+     $("#desc").slideToggle("slow").show();
+ });
+ $('#learn').click(() => {
+     $("#ask-form").slideToggle("slow").show();
+ });
+ </script>
 </body>
 </html>

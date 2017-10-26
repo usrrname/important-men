@@ -1,9 +1,13 @@
-var express = require('express');
-var bodyParser = require('body-parser');
-var dB = require('./mongo');
-var app = express();
+const express = require('express');
+const bodyParser = require('body-parser');
+const dB = require('./mongo');
 const path = require('path');
-var questionsRouter = require('./routes/questions');
+const questionsRouter = require('./routes/questions');
+
+const PORT = process.env.PORT || 3000;
+
+const app = express();
+app.set('port', PORT);
 
 app.use((req, res, next) => {
   res.header("Access-Control-Allow-Origin", "*");
@@ -16,6 +20,7 @@ app.use(bodyParser.json());
 
 app.use(express.static(path.join(__dirname, '../public/app')));
 
+
 // respond with index -email form atm
 app.get('/', (req, res) => {
   res.sendFile(__dirname + '/index.html');
@@ -25,4 +30,4 @@ app.get('/', (req, res) => {
 app.use('/questions', questionsRouter);
 dB.start();
 
-app.listen('3000');
+app.listen(PORT);
