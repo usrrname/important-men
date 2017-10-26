@@ -3,7 +3,7 @@ const MongoClient = require('mongodb').MongoClient
 , assert = require('assert');
 
 // Connection URL
-const url = PROD_MONGODB;
+const url = process.env.MONGODB_URI;
 // Use connect method to connect to the Server
 
 const db = null;
