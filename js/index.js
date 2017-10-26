@@ -8,8 +8,8 @@ function createNode(element) {
 function append(parent, el) {
   return parent.appendChild(el); // Append the second parameter(element) to the first one
 }
-const askUrl = 'http://importantmen.com/questions/ask/';
-const qUrl = 'http://importantmen.com/questions/';
+const askUrl = 'https://important-men.herokuapp.com/questions/ask/';
+const qUrl = 'https://important-men.herokuapp.com/questions/';
 const askForm = document.getElementById('ask-form');
 
 const postQ = () => {
