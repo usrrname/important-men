@@ -1,7 +1,8 @@
 {
   "name": "im",
+  "engines" : { "node" : ">=8.4.0", "npm": ">5.5.1"},
   "version": "1.0.0",
-  "description": "",
+  "description": "important men website",
   "main": "express.js",
   "dependencies": {
     "@sendgrid/mail": "^6.1.4",
@@ -18,10 +19,12 @@
     "eslint-plugin-import": "^2.7.0",
     "eslint-plugin-jsx-a11y": "^6.0.2",
     "eslint-plugin-react": "^7.4.0",
-    "tachyons": "^4.8.1"
+    "tachyons": "^4.8.1",
+    "semver": "^5.4.1"
   },
   "scripts": {
-    "start": "node api/express.js"
+    "start": "node api/express.js",
+    "requirements-check": "babel-node checkVersion.js"
   },
   "repository": {
     "type": "git",

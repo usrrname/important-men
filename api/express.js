@@ -1,7 +1,6 @@
 const express = require('express');
 const bodyParser = require('body-parser');
 const dB = require('./mongo');
-const path = require('path');
 const questionsRouter = require('./routes/questions');
 
 const PORT = process.env.PORT || 3000;
@@ -18,12 +17,10 @@ app.use((req, res, next) => {
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 
-app.use(express.static(path.join(__dirname, 'public/app')));
-
 
 // respond with index -email form atm
 app.get('/', (req, res) => {
-  res.sendFile(__dirname + '/index.html');
+  res.send('hello hello');
 });
 
 // hook router into express route
