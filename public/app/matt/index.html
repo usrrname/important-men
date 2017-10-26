@@ -76,7 +76,7 @@
             <h1 class="bodoni di f4 pv1 ph3 tc mt0 link dim tracked purple" id="learn">Ask A Question</h1><sub class="di tc f9 chevron bottom black"></sub>
         </article><small class="tc mt1">Learn From Matthew</small>
         
-    <form id="ask-form" class="center pa2 black-80 dn" action="http://importantmen.com/questions/ask/" method="post">
+    <form id="ask-form" class="center pa2 black-80 dn" action="https://important-men.herokuapp.com/questions/ask/" method="post">
     <div class="measure">
         <label for="name" class="f6 b db mb2">Name</label><br>
         <input id="firstname" class="input-reset ba b--black-20 pa2 mb2 db w-100" type="text" name="name" placeholder="Name" aria-describedby="name-desc"><br>
@@ -139,14 +139,14 @@
         <input type="checkbox" class="dib avenir" name="asshole-filter" value="I am not an asshole" required>&nbsp;<small class="dib avenir">I am not an asshole. By checking this box I agree to the <a id="tos" href="#tos" class="link dim dark-gray f8 dib">Terms of Service</a></small><br>
         </div>
         <div class="db pa1 ph1 pv4">
-        <input id="send" role="button" tabindex="0" class="f6 fw6 ttu tracked link dim ba bw1 ph3 pv2 mb2 dib mid-gray" onclick="handleBtnClick(postQ)" onKeyPress="handleBtnKeyPress(postQ)" type="submit" value="Submit"></span>
+        <input id="send" role="button" tabindex="0" class="f6 fw6 ttu tracked link dim ba bw1 ph3 pv2 mb2 dib mid-gray" onclick="postQ" type="submit" value="Submit"></span>
         </div>
     </div>
     </form> 
     <div class="fl mw-100 db center pv3 ph3 mt3">
-       <div id="get-questions" class="black-80 dim" action="http://importantmen.com/questions/response/" method="get">
+       <div id="get-questions" class="black-80 dim" action="https://important-men.herokuapp.com/questions/response/" method="get">
        <article class="center tc di">
-           <button id="retrieve" type="submit" value="All Questions" aria-pressed="false" onclick="handleBtnClick(getAll)" class="bodoni tracked di link f4 fw6 dim bn ph2 pv2 mb2 blue bg-white">Read Responses</button><sub class="di tc f8 chevron bottom black"></sub>
+           <button id="retrieve" type="submit" value="All Questions" onclick="getAll" class="bodoni tracked di link f4 fw6 dim bn ph2 pv2 mb2 blue bg-white">Read Responses</button><sub class="di tc f8 chevron bottom black"></sub>
        </article>
         </div>
     <div id="root" class="fl w-100 f5 lh-copy measure-wide">
