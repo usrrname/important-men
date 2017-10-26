@@ -7,7 +7,7 @@ const bodyParser = require('body-parser');
 //for nodemailer & sendgrid
 const sgMail = require('@sendgrid/mail');
 const nodemailer = require('nodemailer');
-const SENDGRID_API_KEY = require('../../sendgrid.env');
+const SENDGRID_API_KEY = PROD.SENDGRID_API_KEY;
 const config = require('../config');
 const email = process.env.EMAIL || config.email;
 const ObjectID = require('mongodb').ObjectID;//for accessing ObjectID()
@@ -34,14 +34,14 @@ questionsRouter.post('/ask', (req, res) => {
     } else {
       console.log('inserted');
       const hex = req.body['_id'] + ''; 
-      sgMail.setApiKey(process.env.SENDGRID_API_KEY);
+      sgMail.setApiKey(SENDGRID_API_KEY);
       const msg = {
         to: email,
         from: 'questions@importantmen.com',
         subject: 'Hello Matthew!',
         text: hex, //not hex string, actual type string
         html: `<p>You have a new question!</p>
-        <form id="res-form"  action="/questions/response/" method="post">  
+        <form id="res-form"  action="http://importantmen.com/questions/response/" method="post">  
             <h3>Contact Details<h/3>
               <ul>
                 <li>Name: ${req.body.name}</li>

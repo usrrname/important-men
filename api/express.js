@@ -1,9 +1,10 @@
-var express = require('express');
-var bodyParser = require('body-parser');
-var dB = require('./mongo');
-var app = express();
+const express = require('express');
+const bodyParser = require('body-parser');
+const dB = require('./mongo');
 const path = require('path');
-var questionsRouter = require('./routes/questions');
+const questionsRouter = require('./routes/questions');
+
+const app = express();
 
 app.use((req, res, next) => {
   res.header("Access-Control-Allow-Origin", "*");
