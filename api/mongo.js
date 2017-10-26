@@ -12,8 +12,8 @@ module.exports = {
       if (err) {
         console.log(`err: ${err}`);
       } else {
-        console.log("Connected correctly to server");
-       db = database;
+        console.log('Connected correctly to server');
+        const db = database;
       }
     });
   },
