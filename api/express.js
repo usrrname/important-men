@@ -23,7 +23,7 @@ app.use(express.static(path.join(__dirname, '../public/app')));
 
 // respond with index -email form atm
 app.get('/', (req, res) => {
-  res.sendFile(__dirname + '/index.html');
+  res.sendFile(path.join(__dirname, 'index.html'));
 });
 
 // hook router into express route

@@ -7,8 +7,8 @@ const bodyParser = require('body-parser');
 //for nodemailer & sendgrid
 const sgMail = require('@sendgrid/mail');
 const nodemailer = require('nodemailer');
-const SENDGRID_API_KEY = PROD.SENDGRID_API_KEY;
-const email = process.env.EMAIL || config.email;
+const SENDGRID_API_KEY = process.env.SENDGRID_API_KEY;
+const email = process.env.EMAIL;
 const ObjectID = require('mongodb').ObjectID;//for accessing ObjectID()
 
 //'questions/' endpoint hit when user selects to see all q+a
@@ -38,7 +38,7 @@ questionsRouter.post('/ask', (req, res) => {
         to: email,
         from: 'questions@importantmen.com',
         subject: 'Hello Matthew!',
-        text: hex, //not hex string, actual type string
+        text: hex,
         html: `<p>You have a new question!</p>
         <form id="res-form"  action="http://importantmen.com/questions/response/" method="post">  
             <h3>Contact Details<h/3>
@@ -65,9 +65,9 @@ questionsRouter.post('/ask', (req, res) => {
               </form>`,
       };
       sgMail.send(msg);
-      return res.send('you sent a question + question handled by sendgrid');
+      res.send('you sent a question + question handled by sendgrid');
+      res.redirect('/matt/');
     }
-    return res.status;
   });
 });
 
@@ -76,10 +76,9 @@ questionsRouter.post('/response', (req, res, err) => {
   if (err) {
     console.log(err);
   }
-  
   const db = dB.get();
   const collection = db.collection('questions');
-  const selectParas = { _id: ObjectID(req.body.fromAsk) }
+  const selectParas = { _id: ObjectID(req.body.fromAsk) };
   const updateValues = {
     name: `${req.body.name}`,
     email: `${req.body.email}`,
@@ -99,5 +98,5 @@ questionsRouter.post('/response', (req, res, err) => {
       console.log('result:', result);
       res.send('Your response was submitted to the Matthieu database <a href="http://www.importantmen.com/matt/">Return To Site</a>');
     });
-
+});
 module.exports = questionsRouter;
