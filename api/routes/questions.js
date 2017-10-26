@@ -41,7 +41,7 @@ questionsRouter.post('/ask', (req, res) => {
         subject: 'Hello Matthew!',
         text: hex, //not hex string, actual type string
         html: `<p>You have a new question!</p>
-        <form id="res-form"  action="http://localhost:3000/questions/response/" method="post">  
+        <form id="res-form"  action="/questions/response/" method="post">  
             <h3>Contact Details<h/3>
               <ul>
                 <li>Name: ${req.body.name}</li>

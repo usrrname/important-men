@@ -56,3 +56,14 @@
 	top: 0; 
 	left: 0; 
   }
+/* accessible buttons */
+  button,
+  [role="button"] {
+	  padding: 3px;
+	  border: 1px solid #CCC;
+  }
+  
+  button[aria-pressed="true"],
+  [role="button"][aria-pressed="true"] {
+	  border: 2px solid #000;
+  };

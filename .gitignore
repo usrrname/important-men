@@ -1,4 +1,6 @@
 node_modules/
 .DS_Store
 api/config.js
-sendgrid.env
+*.env
+tmp
+*.log

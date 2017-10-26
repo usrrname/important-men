@@ -44,6 +44,7 @@
                 </a>
               </div>
  <!-- header end-->
+ <!-- body wrapper start -->
  <div id="wrapper" class="dn">
  <section class="mw7 center avenir">
 <div class="dt mw7 center pt0 pb5 pv5-m pv6-ns">
@@ -62,15 +63,16 @@
                 <div class="flex items-center justify-center pa3 db">
                 <ul class="slider tl">
                 <li>
+                        <p class='f4 b db'>Things Devin Saw</p>
                         <img src="../img/1.png" class="w-100 mw5 w7-ns db"/>
-                        <small class="f8 pa2 db">pile of rocks with construction markers on it are in chicago</small>
+                        <small class="f8 pa2 db">Pile of rocks with construction markers on it in Chicago</small>
                 </li>
                 <li>
                         <img src="../img/2.png " class="w-100 mw5 w7-ns db"/>
                         <small class="f8 pa2 db">chicago</small>
                 </li>
                 <li>
-                        <img src="../img/3.png" class="w-100 mw5 w7-ns db"/>
+                <img src="../img/3.png" class="w-100 mw5 w7-ns db"/>
                 </li>
                 <li>
                 <img src="../img/4.png" class="w-100 mw5 w7-ns db"/>
@@ -97,7 +99,7 @@
 <!-- smoothie recipe -->
 <section class="mw7 center avenir mt0 ph2 pv3">
 <article class="pa3 bb bw1 b--black-10 center tc">
-        <h2 class="avenir f5 f4-m f3-l fw3 black-50 mb0 lh-copy">
+        <h2 class="avenir f5 f4-m f3-l fw3 black-50 mb0">
                     For a good time, try
               </h2>
               <h1 class="bodoni f3 f2-m f1-l fw2 mt0 black-70 mv3">
@@ -147,13 +149,19 @@
                   </div>
 </section>
 </div>
+<!-- body wrapper end -->
+<!-- footer -->
+<div class="fl w-100">
+<footer class="times pv4 ph3 ph5-m ph6-l mid-gray">
+<small class="f8 avenir db tc"> 2017 <b class="athelas ttu">Important Men</b>., IOTA Institute &amp; Canada Council For The Arts</small>
+</footer>
+</div>
+<!-- footer end -->
 <!-- vendor js -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="../js/helper.js"></script>
 <script>
-$('#wrapper').fadeIn(1400);
-</script>
-    <script>
-    jQuery(function($) { 
+jQuery(function($) { 
 
   var $slider = $('.slider'); // class or id of carousel slider
   var $slide = 'li'; // could also use 'img' if you're not using a ul
@@ -185,15 +193,7 @@ $('#wrapper').fadeIn(1400);
     }
     , $transition_time +  $time_between_slides 
   );
-
 });
-    </script>
-<!-- footer -->
-<div class="fl w-100">
-<footer class="times pv4 ph3 ph5-m ph6-l mid-gray">
-<small class="f8 avenir db tc"> 2017 <b class="athelas ttu">Important Men</b>., IOTA Institute &amp; Canada Council For The Arts</small>
-</footer>
-</div>
-<!-- footer end -->
+</script>
 </body>
 </html>
