@@ -18,12 +18,12 @@ app.use((req, res, next) => {
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 
-app.use(express.static(path.join(__dirname, '../public/app')));
+app.use(express.static(path.join(__dirname, 'public/app')));
 
 
 // respond with index -email form atm
 app.get('/', (req, res) => {
-  res.sendFile(path.join(__dirname, 'index.html'));
+  res.sendFile(__dirname + '/index.html');
 });
 
 // hook router into express route
