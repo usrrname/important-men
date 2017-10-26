@@ -44,6 +44,7 @@
                 </a>
               </div>
  <!-- header end-->
+ <div id="wrapper" class="dn">
  <div class="fl w-100 db center">
         <article class="pa2">
             <div class="flex flex-column flex-column-ns flex-nowrap flex-nowrap-ns justify-center">
@@ -152,10 +153,12 @@
     </div>
     </div>
  </section>
+ </div>
  <!-- vendor js -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <script src="http://ajax.cdnjs.com/ajax/libs/json2/20110223/json2.js"></script>
     <script>
+    $('#wrapper').fadeIn(1400);
     $('#tos').click(() => {
         $("#terms").slideToggle("slow");
     });
