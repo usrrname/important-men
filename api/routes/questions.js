@@ -101,14 +101,12 @@ questionsRouter.post('/response', (req, res, err) => {
       },
     },
     { upsert: true, returnNewDocument: true },
-  );
-  res.send(req.body);
-}).then((result, error) => {
+  ).then((result, error) => {
     if (error) {
       console.log('error:', error);
     }
     console.log('result:', result);
     result.send('Your response was submitted to the Matthieu database <a href="http://www.importantmen.com/matt/">Return To Site</a>');
   });
-
+});
 module.exports = questionsRouter;
