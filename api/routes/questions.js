@@ -79,26 +79,34 @@ questionsRouter.post('/response', (req, res, err) => {
   }
   const db = dB.get();
   const collection = db.collection('questions');
-  const selectParas = { _id: ObjectID(req.body.fromAsk) };
-  const updateValues = {
-    name: `${req.body.name}`,
-    email: `${req.body.email}`,
-    message: `${req.body.comment}`,
-    answerTitle: `${req.body.title}`,
-    advice: `${req.body.advice}`,
-  };
+  // const selectParas = { _id: ObjectID(req.body.fromAsk) };
+  // const updateValues = {
+  //   name: `${req.body.name}`,
+  //   email: `${req.body.email}`,
+  //   message: `${req.body.comment}`,
+  //   answerTitle: `${req.body.title}`,
+  //   advice: `${req.body.advice}`,
+  // };
 
   collection.findOneAndUpdate(
-    selectParas, req.body,
-    { $addToSet: updateValues },
+    { _id: ObjectID(req.body.fromAsk) }, req.body,
+    {
+      $addToSet: {
+        name: `${req.body.name}`,
+        email: `${req.body.email}`,
+        message: `${req.body.comment}`,
+        answerTitle: `${req.body.title}`,
+        advice: `${req.body.advice}`,
+      },
+    },
     { upsert: true, returnNewDocument: true },
   ).then((result, error) => {
-      if (error) {
-        console.log('error:', error);
-      }
-      console.log('result:', result);
-      result.send('Your response was submitted to the Matthieu database <a href="http://www.importantmen.com/matt/">Return To Site</a>');
-    });
+    if (error) {
+      console.log('error:', error);
+    }
+    console.log('result:', result);
+    result.send('Your response was submitted to the Matthieu database <a href="http://www.importantmen.com/matt/">Return To Site</a>');
+  });
   res.send(req.body);
 });
 module.exports = questionsRouter;
