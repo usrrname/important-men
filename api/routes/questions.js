@@ -1,17 +1,19 @@
-//this file is questions/whatever-endpoint 
+// this file is questions/whatever-endpoint 
 const express = require('express');
 const dB = require('../mongo');
+
 const questionsRouter = express.Router();
 const bodyParser = require('body-parser');
 
-//for nodemailer & sendgrid
+// for nodemailer & sendgrid
 const sgMail = require('@sendgrid/mail');
 const nodemailer = require('nodemailer');
+
 const SENDGRID_API_KEY = process.env.SENDGRID_API_KEY;
 const email = process.env.EMAIL;
-const ObjectID = require('mongodb').ObjectID;//for accessing ObjectID()
+const ObjectID = require('mongodb').ObjectID; // for accessing ObjectID()
 
-//'questions/' endpoint hit when user selects to see all q+a
+// 'questions/' endpoint hit when user selects to see all q+a
 questionsRouter.get('/', (req, res) => {
   const db = dB.get();
   const collection = db.collection('questions');
@@ -72,7 +74,7 @@ questionsRouter.post('/ask', (req, res) => {
   });
 });
 
-//'questions/response' endpoint hit when user selects to see all q+a
+// 'questions/response' endpoint hit when user selects to see all q+a //
 questionsRouter.post('/response', (req, res, err) => {
   if (err) {
     console.log(err);
@@ -87,7 +89,6 @@ questionsRouter.post('/response', (req, res, err) => {
   //   answerTitle: `${req.body.title}`,
   //   advice: `${req.body.advice}`,
   // };
-
   collection.findOneAndUpdate(
     { _id: ObjectID(req.body.fromAsk) }, req.body,
     {
@@ -100,13 +101,14 @@ questionsRouter.post('/response', (req, res, err) => {
       },
     },
     { upsert: true, returnNewDocument: true },
-  ).then((result, error) => {
+  );
+  res.send(req.body);
+}).then((result, error) => {
     if (error) {
       console.log('error:', error);
     }
     console.log('result:', result);
     result.send('Your response was submitted to the Matthieu database <a href="http://www.importantmen.com/matt/">Return To Site</a>');
   });
-  res.send(req.body);
-});
+
 module.exports = questionsRouter;
