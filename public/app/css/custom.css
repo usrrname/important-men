@@ -41,3 +41,18 @@
 	left: 0.25em;
 	transform: rotate(-135deg);
 }
+
+.slider {
+	margin: auto;
+	width: 500px; /* Update to your slider width */
+	height: 450px;
+	position: relative;
+	overflow: hidden;
+  }
+  
+  .slider li {
+	display: none;
+	position: absolute; 
+	top: 0; 
+	left: 0; 
+  }
