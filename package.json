@@ -21,7 +21,7 @@
     "tachyons": "^4.8.1"
   },
   "scripts": {
-    "start": "nodemon api/express.js"
+    "start": "node api/express.js"
   },
   "repository": {
     "type": "git",
