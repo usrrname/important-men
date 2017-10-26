@@ -27,22 +27,3 @@ $(window).scroll(function() {
 }).scroll();
 
 $('#wrapper').fadeIn(1400);
-//accessible button-cliks WIP
-const handleBtnClick = (event) => {
-	toggleButton(event.target);
-  };
-
-const toggleButton = (element) => {
-// Check to see if the button is pressed
-let pressed = (element.getAttribute('aria-pressed') === 'true');
-// Change aria-pressed to the opposite state
-element.setAttribute('aria-pressed', !pressed);
-  };
-
-const handleBtnKeyPress = (event) => {
-// Check to see if space or enter were pressed
-  if (event.key === ' ' || event.key === 'Enter') {
-    event.preventDefault();
-    toggleButton(event.target);
-}
-};
