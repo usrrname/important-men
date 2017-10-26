@@ -31,6 +31,7 @@ questionsRouter.post('/ask', (req, res) => {
     if (err) {
       console.log(`err: ${err}`);
     } else {
+      console.log('result');
       console.log('inserted');
       const hex = req.body['_id'] + ''; 
       sgMail.setApiKey(SENDGRID_API_KEY);
@@ -90,7 +91,7 @@ questionsRouter.post('/response', (req, res, err) => {
   collection.findOneAndUpdate(
     selectParas, req.body,
     { $addToSet: updateValues },
-    { upsert: true, returnNewDocument: true }
+    { upsert: true, returnNewDocument: true },
   ).then((result, error) => {
       if (error) {
         console.log('error:', error);
