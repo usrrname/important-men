@@ -2,10 +2,6 @@
 outline:none;
 }
 
-input::-moz-focus-inner { 
-	border: 0; 
-	}
-	
 .active {
     font-family:'Helvetica', sans-serif;
     font-size: 1.5em;
