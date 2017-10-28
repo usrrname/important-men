@@ -26,4 +26,20 @@ $(window).scroll(function() {
     });
 }).scroll();
 
+const imgContainer = document.getElementById('landingPhotos');
+imgContainer.addEventListener('click', () => {
+        console.log('clicked');
+        let selectedImg = imgContainer.getElementsByTagName("img");
+        let links = imgContainer.getElementsByTagName("a");
+        for (let i = 0; i< links.length; i++){
+                const selectedLink = links[i].href;
+                console.log(selectedLink);
+        }
+        condition = () =>{
+                window.location(url) = selectedLink;
+         }
+      });
+
+        
+
 $('#wrapper').fadeIn(1400);
