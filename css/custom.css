@@ -1,6 +1,9 @@
 #landingPhotos a img, a:active{
 outline:none;
+box-shadow: 4px 4px 3px #888888;
 }
+
+
 
 .active {
     font-family:'Helvetica', sans-serif;
