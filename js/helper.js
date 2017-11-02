@@ -27,3 +27,5 @@ $(document).ready(function() {
 });
 
 $('#wrapper').fadeIn(1400);
+
+document.addEventListener("touchstart", function(){}, true);

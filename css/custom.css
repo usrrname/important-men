@@ -1,10 +1,30 @@
-#landingPhotos a img, a:active{
-outline:none;
-box-shadow: 4px 4px 3px #888888;
+/*  Remove tap highlight on iOS */
+input,
+textarea,
+button,
+select,
+label,
+a:active {
+	outline:none;
+	-webkit-tap-highlight-color: rgba(0,0,0,0);
 }
 
-
-
+.boxShadow{
+	-webkit-box-shadow: 3px 3px 4px 4px #ccc;  /* Safari 3-4, iOS 4.0.2 - 4.2, Android 2.3+ */
+	-moz-box-shadow:    3px 3px 4px 4px #ccc;/* Firefox 3.5 - 3.6 */
+	box-shadow: 3px 3px 4px 4px #ccc;	
+	z-index:-2;
+  }
+  
+  /* Pre-render the bigger shadow, but hide it */
+.boxShadow:hover{
+	-moz-box-shadow: 3px 4px 5px 4px gray;
+	-webkit-box-shadow: 3px 4px 5px 4px gray;
+	box-shadow: 3px 4px 5px 4px gray;
+	z-index:inherit;
+	transition: all 0.3s ease-in-out;
+  }
+  
 .active {
     font-family:'Helvetica', sans-serif;
     font-size: 1.5em;
