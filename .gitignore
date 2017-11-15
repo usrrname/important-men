@@ -2,5 +2,6 @@ node_modules/
 .DS_Store
 api/config.js
 *.env
+.sample-env
 tmp
 *.log
