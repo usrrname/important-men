@@ -1,10 +1,10 @@
-// var config = require('./config');
-var MongoClient = require('mongodb').MongoClient
-, assert = require('assert');
 
-// Use connect method to connect to the Server
+const MongoClient = require('mongodb').MongoClient;
+const assert = require('assert');
 
-var db = null;
+// connect to the Server
+
+let db = null;
 
 module.exports = {
   start: () => {

@@ -3,14 +3,13 @@ const express = require('express');
 const dB = require('../mongo');
 
 const questionsRouter = express.Router();
-const bodyParser = require('body-parser');
 
 // for nodemailer & sendgrid
-const sgMail = require('@sendgrid/mail');
-const nodemailer = require('nodemailer');
+var sgMail = require('@sendgrid/mail');
 
 const SENDGRID_API_KEY = process.env.SENDGRID_API_KEY;
 const email = process.env.EMAIL;
+const sender = process.env.SENDER;
 const ObjectID = require('mongodb').ObjectID; // for accessing ObjectID()
 
 // 'questions/' endpoint hit when user selects to see all q+a
@@ -33,13 +32,14 @@ questionsRouter.post('/ask', (req, res) => {
     if (err) {
       console.log(`err: ${err}`);
     } else {
-      console.log('result');
+      console.log(result);
       console.log('inserted');
-      const hex = req.body['_id'] + ''; 
+
+      const hex = String(req.body['_id']);
       sgMail.setApiKey(SENDGRID_API_KEY);
       const msg = {
         to: email,
-        from: 'questions@importantmen.com',
+        from: sender,
         subject: 'Hello Matthew!',
         text: hex,
         html: `<p>You have a new question!</p>
@@ -67,9 +67,12 @@ questionsRouter.post('/ask', (req, res) => {
                 </div>
               </form>`,
       };
-      sgMail.send(msg);
-      res.send('you sent a question + question handled by sendgrid');
-      res.redirect('/matt/');
+      sgMail.send(msg).then((fail, response) => {
+        if (fail) {
+          console.log(fail);
+        }
+        response.alert('you sent a question + question handled by sendgrid');
+      });
     }
   });
 });

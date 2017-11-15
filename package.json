@@ -1,10 +1,10 @@
 {
-  "name": "im",
+  "name": "importantmen",
   "engines": {
-    "node": ">=8.4.0",
+    "node": "<=8.4.0",
     "npm": ">5.5.1"
   },
-  "version": "1.0.0",
+  "version": "1.2.0",
   "description": "important men website",
   "main": "express.js",
   "dependencies": {
@@ -30,7 +30,7 @@
     "start": "node api/express.js",
     "test": "nodemon api/express.js",
     "requirements-check": "babel-node checkVersion.js",
-    "setup":"node setup.js"
+    "setup": "node setup.js"
   },
   "repository": {
     "type": "git",
