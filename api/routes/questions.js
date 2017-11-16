@@ -1,22 +1,28 @@
-// this file is questions/whatever-endpoint 
+// this file is questions/whatever-endpoint
 const express = require('express');
 const dB = require('../mongo');
 
 const questionsRouter = express.Router();
 
 // for nodemailer & sendgrid
-var sgMail = require('@sendgrid/mail');
+const sgMail = require('@sendgrid/mail');
+const { ObjectID } = require('mongodb'); // for accessing ObjectID()
 
-const SENDGRID_API_KEY = process.env.SENDGRID_API_KEY;
+const key = process.env.SENDGRID_API_KEY;
 const email = process.env.EMAIL;
-const sender = process.env.SENDER;
-const ObjectID = require('mongodb').ObjectID; // for accessing ObjectID()
+const sender = process.env.SENDER || 'questions@importantmen.com';
 
 // 'questions/' endpoint hit when user selects to see all q+a
 questionsRouter.get('/', (req, res) => {
   const db = dB.get();
   const collection = db.collection('questions');
-  collection.find({}).toArray((err, resp) => {
+  collection.find({
+    $and: [
+      { name: { $exists: true } },
+      { comment: { $exists: true } },
+      { advice: { $exists: true } },
+    ],
+  }).toArray((err, resp) => {
     if (err) {
       throw err;
     }
@@ -25,7 +31,7 @@ questionsRouter.get('/', (req, res) => {
 });
 
 questionsRouter.post('/ask', (req, res) => {
-  console.log('question received');
+  console.log('question received' + res);
   const db = dB.get();
   const collection = db.collection('questions');
   collection.insert(req.body, (err, result) => {
@@ -36,14 +42,14 @@ questionsRouter.post('/ask', (req, res) => {
       console.log('inserted');
 
       const hex = String(req.body['_id']);
-      sgMail.setApiKey(SENDGRID_API_KEY);
+      sgMail.setApiKey(key);
       const msg = {
         to: email,
         from: sender,
         subject: 'Hello Matthew!',
         text: hex,
         html: `<p>You have a new question!</p>
-        <form id="res-form"  action="http://importantmen.com/questions/response/" method="post">  
+        <form id="res-form"  action="https://important-men.herokuapp.com/questions/response/" method="post">  
             <h3>Contact Details<h/3>
               <ul>
                 <li>Name: ${req.body.name}</li>
@@ -54,7 +60,6 @@ questionsRouter.post('/ask', (req, res) => {
               </ul>
               <h3>Message</h3>
                 <p>${req.body.comment}</p>
-                <input type='hidden' name='comment' value='${req.body.comment}'>
               <br><hr><br>
               <h3>Respond in this form below</h3>
               <input id='fromAsk' name='fromAsk' type='hidden' value="${hex}"><br>
@@ -67,11 +72,13 @@ questionsRouter.post('/ask', (req, res) => {
                 </div>
               </form>`,
       };
-      sgMail.send(msg).then((fail, response) => {
-        if (fail) {
-          console.log(fail);
+      sgMail.send(msg).then((error, response) => {
+        if (error) {
+          console.log(error);
         }
-        response.alert('you sent a question + question handled by sendgrid');
+        response.send('you sent a question + question handled by sendgrid').then(() => {
+          response.redirect('./matt/');
+        });
       });
     }
   });
@@ -84,14 +91,7 @@ questionsRouter.post('/response', (req, res, err) => {
   }
   const db = dB.get();
   const collection = db.collection('questions');
-  // const selectParas = { _id: ObjectID(req.body.fromAsk) };
-  // const updateValues = {
-  //   name: `${req.body.name}`,
-  //   email: `${req.body.email}`,
-  //   message: `${req.body.comment}`,
-  //   answerTitle: `${req.body.title}`,
-  //   advice: `${req.body.advice}`,
-  // };
+
   collection.findOneAndUpdate(
     { _id: ObjectID(req.body.fromAsk) }, req.body,
     {
