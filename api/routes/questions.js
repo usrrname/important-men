@@ -27,6 +27,7 @@ questionsRouter.get('/', (req, res) => {
       throw err;
     }
     res.json(resp);
+    console.log(resp);
   });
 });
 
@@ -76,9 +77,7 @@ questionsRouter.post('/ask', (req, res) => {
         if (error) {
           console.log(error);
         }
-        response.send('you sent a question + question handled by sendgrid').then(() => {
-          response.redirect('./matt/');
-        });
+        response.send('you sent a question + question handled by sendgrid');
       });
     }
   });
