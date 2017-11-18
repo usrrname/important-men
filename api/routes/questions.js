@@ -73,12 +73,7 @@ questionsRouter.post('/ask', (req, res) => {
                 </div>
               </form>`,
       };
-      sgMail.send(msg).then((error, response) => {
-        if (error) {
-          console.log(error);
-        }
-        response.send('you sent a question + question handled by sendgrid');
-      });
+      sgMail.send(msg);
     }
   });
 });
@@ -108,7 +103,9 @@ questionsRouter.post('/response', (req, res, err) => {
       console.log('error:', error);
     }
     console.log('result:', result);
-    result.send('Your response was submitted to the Matthieu database <a href="http://www.importantmen.com/matt/">Return To Site</a>');
+    if (res.status(200)) {
+      const div = document.getElementById('send').parentElement.innerHTML('<h2>Your response was submitted to the Matthieu database <a href="http://www.importantmen.com/matt/">Return To Site</a></h2>');
+    }
   });
 });
 module.exports = questionsRouter;
