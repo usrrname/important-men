@@ -6,6 +6,7 @@ const questionsRouter = require('./routes/questions');
 const PORT = process.env.PORT || 3000;
 
 const app = express();
+
 app.set('port', PORT);
 
 app.use((req, res, next) => {
@@ -17,8 +18,6 @@ app.use((req, res, next) => {
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 
-
-// respond with index -email form atm
 app.get('/', (req, res) => {
   res.send('hello hello');
 });

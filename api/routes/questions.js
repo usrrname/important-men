@@ -10,18 +10,16 @@ const { ObjectID } = require('mongodb'); // for accessing ObjectID()
 
 const key = process.env.SENDGRID_API_KEY;
 const email = process.env.EMAIL;
-const sender = process.env.SENDER || 'questions@importantmen.com';
+const sender = process.env.SENDER;
 
 // 'questions/' endpoint hit when user selects to see all q+a
 questionsRouter.get('/', (req, res) => {
   const db = dB.get();
   const collection = db.collection('questions');
   collection.find({
-    $and: [
-      { name: { $exists: true } },
-      { comment: { $exists: true } },
-      { advice: { $exists: true } },
-    ],
+    name: { $exists: true },
+    comment: { $exists: true },
+    advice: { $exists: true },
   }).toArray((err, resp) => {
     if (err) {
       throw err;
@@ -32,14 +30,13 @@ questionsRouter.get('/', (req, res) => {
 });
 
 questionsRouter.post('/ask', (req, res) => {
-  console.log('question received' + res);
+  console.log('question received');
   const db = dB.get();
   const collection = db.collection('questions');
   collection.insert(req.body, (err, result) => {
     if (err) {
       console.log(`err: ${err}`);
     } else {
-      console.log(result);
       console.log('inserted');
 
       const hex = String(req.body['_id']);
@@ -73,14 +70,10 @@ questionsRouter.post('/ask', (req, res) => {
                 </div>
               </form>`,
       };
-      sgMail.send(msg).then((error, response) => {
-        if (error) {
-          console.log(error);
-        }
-        response.send('you sent a question + question handled by sendgrid');
-      });
+      sgMail.send(msg);
     }
   });
+  res.redirect('http://importantmen.com/matt/');
 });
 
 // 'questions/response' endpoint hit when user selects to see all q+a //
@@ -90,25 +83,24 @@ questionsRouter.post('/response', (req, res, err) => {
   }
   const db = dB.get();
   const collection = db.collection('questions');
-
-  collection.findOneAndUpdate(
-    { _id: ObjectID(req.body.fromAsk) }, req.body,
-    {
+  collection.findAndModify({
+    _id: ObjectID(req.body.fromAsk),
       $addToSet: {
-        name: `${req.body.name}`,
-        email: `${req.body.email}`,
-        message: `${req.body.comment}`,
+        comment: `${req.body.comment}`,
         answerTitle: `${req.body.title}`,
         advice: `${req.body.advice}`,
-      },
     },
-    { upsert: true, returnNewDocument: true },
-  ).then((result, error) => {
+    upsert: true, new: true,
+    (err, doc) => {
+      console.log('find and modified  ' + doc)
+    },
+  }).then((result, error) => {
     if (error) {
-      console.log('error:', error);
+      console.log(error);
     }
     console.log('result:', result);
-    result.send('Your response was submitted to the Matthieu database <a href="http://www.importantmen.com/matt/">Return To Site</a>');
   });
+res.send('Your response was submitted to the Matthieu database <a href="http://www.importantmen.com/matt/">Return To Site</a>');
 });
+
 module.exports = questionsRouter;
