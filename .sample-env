@@ -1,4 +1,4 @@
 SENDGRID_API_KEY=sendgrid_fake
 EMAIL=matthew_email
 SENDER=email_server
-MONGO_URI=mongo_fake
+MONGODB_URI=mongo_fake

@@ -1,7 +1,11 @@
 node_modules/
+<<<<<<< HEAD
 .DS_Store
 api/config.js
 *.env
 .sample-env
 tmp
 *.log
+=======
+.DS_Store
+>>>>>>> added gitignore
