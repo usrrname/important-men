@@ -17,15 +17,15 @@ questionsRouter.get('/', (req, res) => {
   const db = dB.get();
   const collection = db.collection('questions');
   collection.find({
-    name: { $exists: true },
-    comment: { $exists: true },
-    advice: { $exists: true },
+    $and: [
+      { comment: { $exists: true } },
+      { advice: { $exists: true } },
+    ],
   }).toArray((err, resp) => {
     if (err) {
       throw err;
     }
     res.json(resp);
-    console.log(resp);
   });
 });
 
@@ -33,12 +33,11 @@ questionsRouter.post('/ask', (req, res) => {
   console.log('question received');
   const db = dB.get();
   const collection = db.collection('questions');
-  collection.insert(req.body, (err, result) => {
+  collection.insert(req.body, (err) => {
     if (err) {
       console.log(`err: ${err}`);
     } else {
       console.log('inserted');
-
       const hex = String(req.body['_id']);
       sgMail.setApiKey(key);
       const msg = {
@@ -73,7 +72,7 @@ questionsRouter.post('/ask', (req, res) => {
       sgMail.send(msg);
     }
   });
-  res.redirect('http://importantmen.com/matt/');
+  res.redirect('../../submitted/');
 });
 
 // 'questions/response' endpoint hit when user selects to see all q+a //
@@ -83,24 +82,24 @@ questionsRouter.post('/response', (req, res, err) => {
   }
   const db = dB.get();
   const collection = db.collection('questions');
-  collection.findAndModify({
-    _id: ObjectID(req.body.fromAsk),
+  collection.findAndModify(
+    { _id: ObjectID(req.body.fromAsk) },
+    { remove: false },
+    {
       $addToSet: {
-        comment: `${req.body.comment}`,
         answerTitle: `${req.body.title}`,
         advice: `${req.body.advice}`,
+      },
     },
-    upsert: true, new: true,
-    (err, doc) => {
-      console.log('find and modified  ' + doc)
+    { new: true, upsert: true },
+    function(error, doc) {
+      if (error) {
+        console.log(error);
+      }
+      console.log('find and modified  ' + doc.json(doc));
     },
-  }).then((result, error) => {
-    if (error) {
-      console.log(error);
-    }
-    console.log('result:', result);
-  });
-res.send('Your response was submitted to the Matthieu database <a href="http://www.importantmen.com/matt/">Return To Site</a>');
+  );
+  res.send('Thanks Matt. Your response has been submitted.');
 });
 
 module.exports = questionsRouter;

@@ -22,6 +22,10 @@ app.get('/', (req, res) => {
   res.send('hello hello');
 });
 
+app.get('/submitted', (req, res) => {
+  res.send('Your question has been sent right to Mr. Matthew. You will be notified when he responds :)');
+});
+
 // hook router into express route
 app.use('/questions', questionsRouter);
 dB.start();
