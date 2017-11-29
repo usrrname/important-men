@@ -86,13 +86,13 @@ questionsRouter.post('/response', (req, res, err) => {
     { _id: ObjectID(req.body.fromAsk) },
     { remove: false },
     {
-      $addToSet: {
+      $set: {
         answerTitle: `${req.body.title}`,
         advice: `${req.body.advice}`,
       },
     },
     { new: true, upsert: true },
-    function(error, doc) {
+    (error, doc) => {
       if (error) {
         console.log(error);
       }
