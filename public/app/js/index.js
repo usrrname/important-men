@@ -48,13 +48,12 @@ fetch(qUrl).then((response) => {
      let name = data[index].name,
       email = data[index].email,
       comment = data[index].comment, 
-      title = data[index].title,
+      title = data[index].questionTitle,
       advice = data[index].advice,
       br = '<br>',
       str = '';
-        str += (br + 'Question: ' + comment 
+        str += (br + title + br + 'Question: ' + comment
                 + br + 'From: ' + name 
-                + br + 'TLDR: ' + title 
                 + br + 'Answer: ' + advice + br);
         div.innerHTML += str;
       }
