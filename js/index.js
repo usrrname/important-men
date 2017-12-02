@@ -15,10 +15,9 @@ const askForm = document.getElementById('ask-form');
 //only allow get function once
 const once = (fn, context) => { 
 	var result;
-	getAll.data
 	return () => { 
 		if(fn) {
-			result = fn.apply(context || this, data[index]);
+			result = fn.apply(context || this, Aargs);
 			fn = null;
 		}
 
