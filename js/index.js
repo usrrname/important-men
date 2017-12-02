@@ -81,6 +81,9 @@ fetch(qUrl).then((response) => {
 	append(comment,advice);
     })
   })
+.catch((error) => {
+  console.log(error);
+})
 }
 //    for (var index = 0; index < data.length; index++) {
 //      let name = data[index].name,
