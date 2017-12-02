@@ -81,7 +81,7 @@ fetch(qUrl).then((response) => {
 	append(comment,advice);
     })
   })
-})
+}
 //    for (var index = 0; index < data.length; index++) {
 //      let name = data[index].name,
 //       email = data[index].email,
