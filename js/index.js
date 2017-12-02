@@ -18,7 +18,7 @@ const once = (fn, context) => {
 
 	return () => { 
 		if(fn) {
-			result = fn.apply(context || this, arguments);
+			result = fn.apply(context || this, data);
 			fn = null;
 		}
 
