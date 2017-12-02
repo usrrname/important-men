@@ -28,7 +28,12 @@ const once = (fn, context) => {
 
 // Usage
 const canOnlyGetOnce = once(() => {
-	getAll();
+	var results = document.getElementsByClassName("results");
+	if (results.style.display === "none") {
+      	getAll();
+    } else {
+        results.style.display = "none";
+    }
 });
 
 const postQ = () => {
