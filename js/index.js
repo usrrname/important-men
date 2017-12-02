@@ -12,6 +12,55 @@ const askUrl = 'https://important-men.herokuapp.com/questions/ask/';
 const qUrl = 'https://important-men.herokuapp.com/questions/';
 const askForm = document.getElementById('ask-form');
 
+//only allow get function once
+const once (fn, context) => { 
+	var result;
+
+	return () => { 
+		if(fn) {
+			result = fn.apply(context || this, arguments);
+			fn = null;
+		}
+
+		return result;
+	};
+}
+
+// Usage
+const canOnlyGetOnce = once(() => {
+	() => {
+fetch(qUrl).then((response) => {
+  return response.json();
+})
+  .then( (data) => { 
+    console.log(data);
+    const root = document.getElementById('root');
+    let div = createNode('div');
+    div.className = 'results';
+    let label1 = createNode('label');
+    let label2 = createNode('label');
+    let from = createNode('label');
+   for (var index = 0; index < data.length; index++) {
+     let name = data[index].name,
+      email = data[index].email,
+      comment = data[index].comment, 
+      title = data[index].questionTitle,
+      advice = data[index].advice,
+      br = '<br>',
+      str = '';
+        str += (br + title + br + 'Question: ' 
+		+ br + comment
+                + br + 'From: ' + name 
+                + br + 'Answer: ' + advice + br);
+        div.innerHTML += str;
+      }
+      append(root, div);
+    })
+.catch((error) => {
+  console.log(error);
+})
+});
+
 const postQ = () => {
 fetch(askUrl, {
 	method: 'post',
@@ -52,7 +101,8 @@ fetch(qUrl).then((response) => {
       advice = data[index].advice,
       br = '<br>',
       str = '';
-        str += (br + title + br + 'Question: ' + comment
+        str += (br + title + br + 'Question: ' 
+		+ br + comment
                 + br + 'From: ' + name 
                 + br + 'Answer: ' + advice + br);
         div.innerHTML += str;
