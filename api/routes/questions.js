@@ -54,16 +54,18 @@ questionsRouter.post('/ask', (req, res) => {
                 <li>Email: ${req.body.email}</li>
                 <input type='hidden' name='email' value='${req.body.email}'>
                 <li id='mongoString' name='mongoString'>Mongo ID: ${hex} </li>
+              <input id='fromAsk' name='fromAsk' type='hidden' value="${hex}"><br>
               </ul>
               <h3>Message</h3>
                 <p>${req.body.comment}</p>
               <br><hr><br>
-              <h3>Respond in this form below</h3>
-              <input id='fromAsk' name='fromAsk' type='hidden' value="${hex}"><br>
-                <label>Subject Line</label><br>
-                  <input id='title' name='title' placeholder='subject line' type='text'><br>
+              <h3>What do you think the question was about?</h3>
+                <label>Summarize the question into a click-baity title</label> This will be used as a heading over each Q+A <br>
+                <input id='title' name='title' placeholder='A catchy title or question' type='text'><br>
+
+                <h3>Respond to the question in this field below</h3>
                 <label>Your Answer</label><br>
-                  <textarea id='advice' name='advice' type='text' placeholder='Enter Your Lovely Advice :)'></textarea><br>
+                  <textarea id='advice' name='advice' type='text' placeholder='Enter Your Lovely Advice :)' width='70%' height='50%'></textarea><br>
                 <div>
                   <input id="answerButton" type="submit" value="Submit">
                 </div>
@@ -87,7 +89,7 @@ questionsRouter.post('/response', (req, res, err) => {
     { remove: false },
     {
       $set: {
-        answerTitle: `${req.body.title}`,
+        questionTitle: `${req.body.title}`,
         advice: `${req.body.advice}`,
       },
     },
