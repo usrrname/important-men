@@ -12,6 +12,25 @@ const askUrl = 'https://important-men.herokuapp.com/questions/ask/';
 const qUrl = 'https://important-men.herokuapp.com/questions/';
 const askForm = document.getElementById('ask-form');
 
+//only allow get function once
+const once = (fn, context) => { 
+	var result;
+
+	return () => { 
+		if(fn) {
+			result = fn.apply(context || this, arguments);
+			fn = null;
+		}
+
+		return result;
+	};
+}
+
+// Usage
+const canOnlyGetOnce = once(() => {
+	getAll();
+});
+
 const postQ = () => {
 fetch(askUrl, {
 	method: 'post',
@@ -52,7 +71,8 @@ fetch(qUrl).then((response) => {
       advice = data[index].advice,
       br = '<br>',
       str = '';
-        str += (br + title + br + 'Question: ' + comment
+        str += (br + title + br + 'Question: ' 
+		+ br + comment
                 + br + 'From: ' + name 
                 + br + 'Answer: ' + advice + br);
         div.innerHTML += str;
