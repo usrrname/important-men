@@ -1,3 +1,4 @@
+//landing menu slide
 $(window).scroll(function() {
         var scrollDistance = $(window).scrollTop();
         // Assign active class to nav links while scolling
@@ -29,3 +30,13 @@ $(document).ready(function() {
 $('#wrapper').fadeIn(1400);
 
 document.addEventListener("touchstart", function(){}, true);
+
+//toggle show/hide 
+
+
+const button = document.querySelector("button");
+
+button.addEventListener('click', () => {
+             
+        });
+

@@ -11,28 +11,7 @@ function append(parent, el) {
 const askUrl = 'https://important-men.herokuapp.com/questions/ask/';
 const qUrl = 'https://important-men.herokuapp.com/questions/';
 const askForm = document.getElementById('ask-form');
-
-//only allow get function once
-const once = (fn, context) => { 
-	var result;
-	return () => { 
-		if(fn) {
-			result = fn.apply(context || this, Aargs);
-			fn = null;
-		}
-
-		return result;
-	};
-}
-// Usage
-const canOnlyGetOnce = once(() => {
-	var results = document.getElementsByClassName("results");
-	if (results.style.display === "none") {
-      	getAll();
-    } else {
-        results.style.display = "none";
-    }
-});
+const root = document.getElementById('root');
 
 const postQ = () => {
 fetch(askUrl, {
@@ -46,62 +25,42 @@ fetch(askUrl, {
   if (err){
     throw err;
   }
-  if (res.status(200)) {
-  let div = createNode('div');
-  div.innerHTML = "Thanks for submitting your question."
-  append(askForm, div);
-  }
 });
 }
 
+//let hasAppended = false;
+
 const getAll = () => {
 fetch(qUrl).then((response) => {
-   response.json();
+ return response.json();
 })
   .then( (data) => { 
-    console.log(data);
-	let questions = data.results;
-	return questions.map((question) => {
-      let root = document.getElementById('root');
+    // if (hasAppended = false){
+    //   hasAppended = true;
     let div = createNode('div');
-    div.className = 'results';
-    let title = createNode('h3');
-	title.innerhtml = `${question.questionTitle}`;
-    let from = createNode('p');
-	from.innerHTML = `${question.name}`;
-    let comment = createNode('p');
-	comment.innerHTML = `${question.comment}`;
-	let advice = createNode('p');
-	comment.innerHTML = `${question.advice}`;
-      append(root, div);
-	append(div, title);
-	append(title, from);
-	append(from, comment);
-	append(comment,advice);
-    })
-  })
+    let heading = createNode('div');
+    let userQ = createNode('p');
+    let name = createNode('p');
+    let advice = createNode('p');
+    let str = '';
+    const root = document.getElementById('root');
+
+     for (var index = 0; index < data.length; index++) {
+      heading.innerHTML = data[index].questionTitle;
+      userQ.innerHTML = data[index].comment;
+      name.innerHTML = data[index].name;
+      advice.innerHTML = data[index].advice;
+      let br = "<br>";
+
+      br += heading.innerHTML + br + userQ.innerHTML + br
+                + 'from ' + name.innerHTML + br
+                + 'Matthew says: ' + advice.innerHTML + br;
+      div.innerHTML += br;
+      }
+    append(root, div)
+    }
+    )
 .catch((error) => {
   console.log(error);
 })
 }
-//    for (var index = 0; index < data.length; index++) {
-//      let name = data[index].name,
-//       email = data[index].email,
-//       comment = data[index].comment, 
-//       title = data[index].questionTitle,
-//       advice = data[index].advice,
-//       br = '<br>',
-//       str = '';
-//         str += (br + title + br + 'Question: ' 
-// 		+ br + comment
-//                 + br + 'From: ' + name 
-//                 + br + 'Answer: ' + advice + br);
-//         div.innerHTML += str;
-//       }
-//       append(root, div);
-//     })
-// .catch((error) => {
-//   console.log(error);
-// })
-// }
-
