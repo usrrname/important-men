@@ -33,10 +33,27 @@ document.addEventListener("touchstart", function(){}, true);
 
 //toggle show/hide 
 
+const wasClicked = false;
+const button = document.querySelector('.btn');
 
-const button = document.querySelector("button");
-
-button.addEventListener('click', () => {
-             
+button.addEventListener('click', (e) => {
+        const allresults = document.getElementsByClassName('results'); 
+        if(wasClicked == "false")
+        {
+        button.classList.toggle('active');
+        allresults.style.display == "block";
+        [].map.call(document.querySelectorAll('.toggle-me'), (el) => {
+                // classList supports 'contains', 'add', 'remove', and 'toggle'
+                el.classList.toggle('toggle');  
+                wasClicked = true;    
         });
+        
+        }
+        // if (wasClicked !== "false"){
+        //         let end;
+        //         button.classList.toggle('active');
+        //         end = allresults.style.display == "none" ? "block" : "none";
+        // }
+        
+});
 

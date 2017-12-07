@@ -32,34 +32,37 @@ fetch(askUrl, {
 
 const getAll = () => {
 fetch(qUrl).then((response) => {
- return response.json();
+ return response.json(response);
 })
   .then( (data) => { 
     // if (hasAppended = false){
     //   hasAppended = true;
-    let div = createNode('div');
-    let heading = createNode('div');
-    let userQ = createNode('p');
-    let name = createNode('p');
-    let advice = createNode('p');
-    let str = '';
-    const root = document.getElementById('root');
+    let questions = data;
+    return questions.map((question) =>{
+      let div = createNode('section');
+      div.className = "results";
+      const root = document.getElementById('root');
+      let heading = createNode('div');
+      heading.innerHTML = `${question.questionTitle}`;
+      heading.className = "headline";
+      let userQ = createNode('p');
+      userQ.innerHTML = `${question.comment}`;
+      userQ.className = "longQuestion";
+      let name = createNode('div');
+      name.innerHTML = "sent by " + `${question.name}`;
+      name.className = "sender";
+      let advice = createNode('div');
+      advice.innerHTML =  `${question.advice}` + "<br>Matt";
+      advice.className = "answer";
+      let str = '';
 
-     for (var index = 0; index < data.length; index++) {
-      heading.innerHTML = data[index].questionTitle;
-      userQ.innerHTML = data[index].comment;
-      name.innerHTML = data[index].name;
-      advice.innerHTML = data[index].advice;
-      let br = "<br>";
-
-      br += heading.innerHTML + br + userQ.innerHTML + br
-                + 'from ' + name.innerHTML + br
-                + 'Matthew says: ' + advice.innerHTML + br;
-      div.innerHTML += br;
-      }
-    append(root, div)
-    }
-    )
+      append(root, div);
+      append(div, heading);
+      append(heading, userQ);
+      append(userQ, name);
+      append(name, advice);
+    })
+    })
 .catch((error) => {
   console.log(error);
 })
