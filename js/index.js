@@ -28,21 +28,24 @@ fetch(askUrl, {
 });
 }
 
-//let hasAppended = false;
+let hasAppended = false;
 
 const getAll = () => {
 fetch(qUrl).then((response) => {
- return response.json(response);
+ return response.json();
 })
   .then( (data) => { 
-    // if (hasAppended = false){
-    //   hasAppended = true;
+    if (hasAppended == false){
+      hasAppended = true;
     let questions = data;
     return questions.map((question) =>{
       let div = createNode('section');
       div.className = "results";
+      let details = createNode('div');
+      div.id = "details";
+      details.style.display = "none";
       const root = document.getElementById('root');
-      let heading = createNode('div');
+      let heading = createNode('a');
       heading.innerHTML = `${question.questionTitle}`;
       heading.className = "headline";
       let userQ = createNode('p');
@@ -60,13 +63,20 @@ fetch(qUrl).then((response) => {
 
       append(root, div);
       append(div, heading);
-      append(heading, userQ);
+      append(details, userQ);
       append(userQ, name);
-      append(heading, advice);
+      append(details, advice);
       append(advice, signature);
+      heading.attr.onclick ="toggle_visibility('details');"
     })
-    })
+  }
+})
 .catch((error) => {
   console.log(error);
 })
+};
+
+const toggle_visibility = (id) => {
+  var e = document.getElementById(id);
+  e.style.display = ((e.style.display == 'none') ? 'none' : 'block');
 }

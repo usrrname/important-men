@@ -32,16 +32,13 @@ a:active {
     text-decoration: none;
     line-height: 1em;
 }
-
-.results {
-    font-family:'Athelas', serif;
-    padding-left:1em;
-    padding-bottom:2em;
-    font-size: 1em;
+/* getAll() response results */
+.results{
+	padding:1em;
+	font-family:"Roboto", sans-serif;
 }
 .headline{
-font-family:"Roboto", sans-serif;
-font-size:2em;
+font-size:x-large;
 }
 .headline:hover{
 opacity: 0.5;
@@ -60,9 +57,10 @@ padding: 0.1em;
 margin:0;
 }
 .answer{
-	padding: 0.7em;
+	padding: 0.6em;
 	font-size: medium;
 	background:	rgb(175, 250, 175);
+	text-align: left;
 	border-radius: 4px;
 }
 .sig{
