@@ -48,19 +48,22 @@ fetch(qUrl).then((response) => {
       let userQ = createNode('p');
       userQ.innerHTML = `${question.comment}`;
       userQ.className = "longQuestion";
-      let name = createNode('div');
+      let name = createNode('p');
       name.innerHTML = "sent by " + `${question.name}`;
       name.className = "sender";
       let advice = createNode('div');
-      advice.innerHTML =  `${question.advice}` + "<br>Matt";
+      advice.innerHTML =  `${question.advice}`;
       advice.className = "answer";
-      let str = '';
+      let signature = createNode('p');
+      signature.className = "sig";
+      signature.innerHTML = "Matt";
 
       append(root, div);
       append(div, heading);
       append(heading, userQ);
       append(userQ, name);
-      append(name, advice);
+      append(heading, advice);
+      append(advice, signature);
     })
     })
 .catch((error) => {
