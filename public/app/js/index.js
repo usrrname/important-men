@@ -59,10 +59,9 @@ fetch(qUrl).then((response) => {
       signature.innerHTML = "Matt";
 
       append(root, div);
-      append(div, heading);
-      append(heading, userQ);
+      append(div, userQ);
       append(userQ, name);
-      append(heading, advice);
+      append(div, advice);
       append(advice, signature);
     })
     }})
