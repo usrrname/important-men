@@ -26,7 +26,7 @@
     <script type="text/javascript" src="../js/index.js"></script>
     <link rel="stylesheet" href="../css/custom.css" > 
     </head>
-<body>
+<body onload="getAll()">
 <!-- header -->
 <nav class="dt w-100 border-box pa3 ph5-ns bb b--black-10">
                 <h4>
@@ -64,7 +64,7 @@
             </div>
             <div class="center mw-9 mw-90-ns mv4 pa2">
                 <article class="center tc">
-                    <h1 class="bodoni f4 pv1 ph3 link dim mv0 red di" id="imgMatt">Why Matthew?</h1><sub class="di tc f9 chevron bottom black"></sub>
+                    <h1 class="bodoni f4 pv1 ph3 link dim mv0 red di" id="imgMatt">Who is Matthew?</h1><sub class="di tc f9 chevron bottom black"></sub>
                 </article>
                     <p id="desc" class="center f6-ns f4-l lh-copy measure tl ph3 dn">
                         Matthew might look like he's scowling but he's actually feeling alright. He has thirty-two years of experience living as
@@ -97,7 +97,7 @@
         <label for="email" class="f6 b db mb2">Email</label><br>
         <input id="email" type="email" class="input-reset ba b--black-20 pa2 mb2 db w-100" name="email" placeholder="Your Email Here" required><br>
         <label for="question" class="f6 b db mb2">Question</label><br>
-        <textarea id="comment" type="text" name="comment" class="f6 db mb2 w-100 ba b--black-20" placeholder="Enter Your Question(s)" cols="50" rows="5" required></textarea><br>
+        <textarea id="comment" type="text" name="comment" class="f6 db mb2 w-100 ba b--black-20" placeholder="What's on your mind?" cols="50" rows="5" required></textarea><br>
         <div id="terms" class="dn measure-wide pa0">
                 <div class = "center fl w-100 avenir db">
                     <section class="db ba solid bw1 b--black-10 br1 bg-light-gray o-90 ph4 pv4 mv2">
@@ -160,10 +160,10 @@
     <div class="fl mw-100 db center pv3 ph3 mt3">
        <div id="get-questions" class="black-80 dim" action="https://important-men.herokuapp.com/questions/" method="get">
        <article class="center tl di">
-           <button id="retrieve" type="submit" value="All Questions" onclick="getAll()" class="btn bodoni tracked di link f4 fw6 dim bn ph2 pv2 mb2 blue bg-white">Read Responses</button><sub class="di tc f8 chevron bottom black"></sub>
+           <button id="retrieve" type="submit" value="All Questions" class="btn bodoni tracked di link f4 fw6 dim bn ph2 pv2 mb2 blue bg-white">Q &amp; A </button>
        </article>
         </div>
-    <div id="root" class=" toggle-me fl w-90 f5 lh-copy measure-wide tl">
+    <div id="root" class="fl w-90 f5 lh-copy measure-wide tl">
     </div>
     </div>
  </section>
