@@ -1,7 +1,7 @@
 
 User-agent: Twitterbot
-Allow: /images
+Allow: /img
 Disallow:
 
 User-agent: facebookexternalhit
-Allow: /images
+Allow: /img
