@@ -35,8 +35,8 @@ fetch(qUrl).then((response) => {
  return response.json(response);
 })
   .then( (data) => { 
-    // if (hasAppended = false){
-    //   hasAppended = true;
+    if (hasAppended == false){
+      hasAppended = true;
     let questions = data;
     return questions.map((question) =>{
       let div = createNode('section');
@@ -65,7 +65,7 @@ fetch(qUrl).then((response) => {
       append(heading, advice);
       append(advice, signature);
     })
-    })
+    }})
 .catch((error) => {
   console.log(error);
 })
