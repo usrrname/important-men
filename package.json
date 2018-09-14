@@ -1,36 +1,24 @@
 {
-  "name": "im",
+  "name": "important-men-gh",
   "version": "1.0.0",
-  "description": "",
-  "main": "express.js",
+  "description": "static front end of importantmen.com",
+  "main": "./public/app/index.html",
   "dependencies": {
-    "@sendgrid/mail": "^6.1.4",
-    "body-parser": "^1.18.2",
-    "bson-objectid": "^1.2.1",
-    "express": "^4.16.3",
-    "mongodb": "^2.2.31",
-    "nodemailer": "^4.2.0",
-    "path": "^0.12.7"
-  },
-  "devDependencies": {
     "eslint": "^5.5.0",
-    "eslint-config-airbnb": "^16.0.0",
-    "eslint-plugin-import": "^2.7.0",
-    "eslint-plugin-jsx-a11y": "^6.0.2",
-    "eslint-plugin-react": "^7.4.0",
-    "tachyons": "^4.8.1"
+    "express": "^4.16.3"
   },
+  "devDependencies": {},
   "scripts": {
-    "start": "node api/express.js"
+    "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/usrrname/important-men.git"
   },
-  "author": "jen chan",
+  "author": "Jen Chan",
   "license": "ISC",
   "bugs": {
     "url": "https://github.com/usrrname/important-men/issues"
   },
-  "homepage": "https://github.com/usrrname/important-men#readme"
+  "homepage": "http://usrrname.github.io/important-men"
 }
