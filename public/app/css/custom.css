@@ -16,6 +16,39 @@ outline:none;
     padding-bottom:2em;
     font-size: 1em;
 }
+.headline{
+font-family:"Roboto", sans-serif;
+font-size:2em;
+}
+.headline:hover{
+opacity: 0.5;
+animation: 2s ease-in-out;
+}
+.longQuestion{
+background-color:#b2ecff80;
+padding: 0.7em;
+font-size: medium;
+text-align: left;
+border-radius: 4px;
+}
+.sender{
+font-size: small;
+padding: 0.1em;
+margin:0;
+}
+.answer{
+	padding: 0.7em;
+	font-size: medium;
+	background:	rgb(175, 250, 175);
+	border-radius: 4px;
+}
+.sig{
+	padding: 0.1em;
+	margin:0;
+	text-align: right;
+	font-size: small;
+	padding-bottom:0;
+}
 /* chevrons */
 .chevron::before {
 	border-style: solid;
