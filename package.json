@@ -1,14 +1,15 @@
 {
   "name": "important-men-gh",
-  "version": "1.0.0",
+  "version": "1.0.2",
   "description": "static front end of importantmen.com",
-  "main": "./public/app/index.html",
+  "main": "",
   "dependencies": {
     "eslint": "^5.5.0",
     "express": "^4.16.3"
   },
   "devDependencies": {},
   "scripts": {
+    "start": "node api/express.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
