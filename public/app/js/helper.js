@@ -1,3 +1,15 @@
+//landing menu slide
+$(window).scroll(function() {
+        var scrollDistance = $(window).scrollTop();
+        // Assign active class to nav links while scolling
+        $('img').each(function(i) {
+                if ($(this).position().top <= scrollDistance) {
+                        $('#menu a.active').removeClass('active');
+                        $('#menu a').eq(i).addClass('active');
+                }
+        });
+    }).scroll();
+    
 $(document).ready(function() {
     $('#menu a[href*=\\#]:not([href=\\#])').bind('click', function(e) {
             e.preventDefault(); // prevent hard jump, the default behavior
@@ -14,16 +26,5 @@ $(document).ready(function() {
             return false;
     });
 });
-
-$(window).scroll(function() {
-    var scrollDistance = $(window).scrollTop();
-    // Assign active class to nav links while scolling
-    $('img').each(function(i) {
-            if ($(this).position().top <= scrollDistance) {
-                    $('#menu a.active').removeClass('active');
-                    $('#menu a').eq(i).addClass('active');
-            }
-    });
-}).scroll();
 
 $('#wrapper').fadeIn(1400);
