@@ -2,7 +2,7 @@ const express = require('express');
 const bodyParser = require('body-parser');
 const dB = require('./mongo');
 const questionsRouter = require('./routes/questions');
-
+const path = require('path');
 const PORT = process.env.PORT || 3000;
 
 const app = express();
@@ -18,8 +18,11 @@ app.use((req, res, next) => {
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 
+app.use(express.static(path.join(__dirname, '../public/app')));
+
+// respond with index -email form atm
 app.get('/', (req, res) => {
-  res.send('hello hello');
+  res.sendFile(path.join(__dirname + '/index.html'));
 });
 
 app.get('/submitted', (req, res) => {
